@@ -851,12 +851,12 @@ window.dpaTrack=function(ev,props){try{if(p==='ga4'&&window.gtag)gtag('event',ev
   "eligible_loan_types": "Eligible first mortgage purchase incl. construction: s30, s20, s15, s10, hr30, CARE, ARMs, Construction, hs30, he30, fha30, fha15",
   "borrower_contribution": "not stated",
   "occupancy": "not stated",
-  "funding_status": "not stated",
+  "funding_status": "Funds available (confirmed by Alex Carr, Associated Bank LO, 2026-11-03)",
   "source_url": "PATH Grant Program sheet; amount $10,000",
   "notes": "Official name: Program for Assisting Today's Homebuyer (PATH). Amount per PATH program sheet. Limits subject to change.",
   "income_table": "flat county limits (PATH 2025 markets table)",
   "asset_limit": "not stated",
-  "date_checked": "2026-10-19",
+  "date_checked": "2026-11-03",
   "incomeBasis": "Qualifying income (all qualifying income on the URLA)",
   "limitType": "PATH program-specific flat county limits (80%/100% AMI)"
  }
@@ -1057,14 +1057,14 @@ function results(){MATCH=[];const hr=undefined,price=undefined;
  items.filter(x=>x.v!='red').forEach(x=>MATCH.push(x.p.name.replace(/^Associated Bank /,'')));
  const g=items.filter(x=>x.v=='green'),y=items.filter(x=>x.v=='yellow'),r=items.filter(x=>x.v=='red'&&!isPath(x));
  const top=Math.max(0,...g.concat(y).map(x=>amtNum(x.p)));
- const badge=p=>{if(/^Associated Bank PATH/.test(p.name))return '';const s=st(p.funding_status);return `<span class="st ${s[0]}">${s[1]}</span>`};
+ const badge=p=>{const s=st(p.funding_status);return `<span class="st ${s[0]}">${s[1]}</span>`};
  const why=x=>{const L=[];if(isPath(x)){L.push('$10,000 grant used with an eligible first mortgage (conventional, CARE, ARM, construction or FHA). First-time buyers under the 80% income limit qualify anywhere in the PATH counties; others (income up to the 100% limit, or not first-time) need a home in a low-to-moderate income census tract. Credit and debt rules follow the first mortgage.');}
   L.push(...x.e.fail);if(!x.e.fail.some(f=>/income/i.test(f)))L.push(x.ic.text);
   if(x.e.ver.length)L.push('Confirm: '+x.e.ver.slice(0,2).map(v=>v.split(':')[0].toLowerCase()).join(', ')+'.');
   L.push(`Checked for ${x.area}.`);return `<details class=wy><summary>Why?</summary>${L.map(t=>`<div>${t}</div>`).join('')}</details>`};
  const label={green:['✓','You may qualify'],yellow:['?','Maybe — confirm with a lender'],red:['✗',"Doesn't fit"]};
  const card=(x,i)=>{const amt=isPath(x)?'$10,000':(x.p.assistance_amount=='not stated'?'Amount varies':x.p.assistance_amount.split(' (')[0].split(';')[0]);
-  const nm=isPath(x)?'PATH Grant':x.p.name;const sub=isPath(x)?`<div class=sm>Program for Assisting Today's Homebuyer · $10,000 grant</div>`:'';const src=isPath(x)?`<div class=src>Info from the PATH program sheet (2025 markets table). Subject to credit approval and program guidelines; limits subject to change.</div>`:`<div class=src>Info from ${x.p.administrator.split(' (')[0]}'s public website, checked ${x.p.date_checked}. <a href="${x.p.source_url}" target=_blank rel=noopener>Source</a></div>`;const note=isPath(x)&&x.p._note?`<div class=pn>${x.p._note}</div>`:'';
+  const nm=isPath(x)?'PATH Grant':x.p.name;const sub=isPath(x)?`<div class=sm>Program for Assisting Today's Homebuyer · $10,000 grant</div>`:'';const src=isPath(x)?`<div class=src>Info from the PATH program sheet (2025 markets table), checked ${x.p.date_checked}. Subject to credit approval and program guidelines; limits subject to change.</div>`:`<div class=src>Info from ${x.p.administrator.split(' (')[0]}'s public website, checked ${x.p.date_checked}. <a href="${x.p.source_url}" target=_blank rel=noopener>Source</a></div>`;const note=isPath(x)&&x.p._note?`<div class=pn>${x.p._note}</div>`:'';
   return x.v=='red'?`<div class="rc red slot" style="--d:${i}"><span class=ic>✗</span><span class=rn>${nm}</span>${badge(x.p)}${isPath(x)?sub:''}${why(x)}${src}</div>`
   :`<div class="vc ${x.v} slot${isPath(x)?' feat':''}" style="--d:${i}"><div class=vh><span class=ic>${label[x.v][0]}</span>${(isPath(x)&&x.v=='yellow'?(x.p._anyw?'Potentially eligible - depends on the address':'Maybe'):label[x.v][1])}${badge(x.p)}</div><div class=va>${amt}</div><div class=vn>${nm}</div>${sub}${note}${why(x)}${src}</div>`};
  let i=0;let h=`<div class=sum><div class=sn>${g.length+y.length}</div><div>program${g.length+y.length==1?'':'s'} you may qualify for<br><span class=sm>${g.length} likely · ${y.length} maybe${top?` · up to ${$(top)} from a single program`:''}</span></div></div>`;
