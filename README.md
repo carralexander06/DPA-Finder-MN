@@ -10,6 +10,8 @@ The home page is three steps: take a Home Stretch class, start the quiz, and get
 
 The newsletter form reads `ALERTS_FORM_ID` in `index.html`. Paste a new Formspree id there when it exists. Do not reuse `mvkkdapp` — that form is Real Estate Radio leads only.
 
+The Nov 14, 2026 HomeBuyer BINGO & Bites page is at `/bingo/`. It reads the same `programs.json` as the finder, so open and closed funding stays in one place.
+
 Published with GitHub Pages from the root of `main`:
 
 https://carralexander06.github.io/DPA-Finder-MN/
