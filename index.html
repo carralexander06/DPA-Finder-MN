@@ -20,7 +20,7 @@ h4{margin:20px 0 6px;color:#b22}.rg{display:grid;gap:6px}.rc{background:#fdeaea;
 body{font-family:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;color:#1d2b30;line-height:1.45;padding:40px 16px 170px!important}
 body{background-size:100% 180px!important}
 .w{max-width:800px;margin:0 auto;padding:36px 44px 32px;background:rgba(255,255,255,.94);border:1px solid rgba(31,79,92,.12)!important;border-radius:22px!important;box-shadow:0 24px 60px -18px rgba(31,79,92,.35),0 4px 14px rgba(31,79,92,.08)!important;min-height:0!important;backdrop-filter:blur(6px)}
-@media(max-width:640px){body{padding:14px 46px 150px 10px!important}.w{padding:22px 16px}}
+@media(max-width:640px){body{padding:14px 46px 150px 46px!important}.w{padding:22px 16px}}
 h2{font-size:23px;letter-spacing:-.01em}
 .tabs{border-bottom:1px solid #e3eaec;padding-bottom:12px;margin-bottom:16px}.tabs button{flex:0 0 auto;padding:10px 20px;border-radius:999px;background:#eef3f4;color:#1f4f5c}.tabs button.on{background:#0a5;color:#fff}
 .tabs .hm{margin-left:auto;background:transparent;color:#1f4f5c;font-weight:600}
@@ -42,7 +42,7 @@ h2{font-size:23px;letter-spacing:-.01em}
 .step-btn{display:inline-block;margin-top:10px;background:#0a5;color:#fff;padding:10px 16px;border-radius:999px;font-weight:700;text-decoration:none;border:0;cursor:pointer;flex:none;width:auto;font-size:15px;box-shadow:0 8px 18px -10px #0a5a;white-space:nowrap}
 .step-btn.alt{background:#0b5cad;box-shadow:none}
 .textlink{background:none;border:0;color:#0a5;padding:0;font-size:13px;font-weight:600;text-decoration:underline;cursor:pointer;flex:none;width:auto;border-radius:0}
-.lo-line{font-size:12px;color:#5c6e72;margin:14px 0 4px}
+.lo-line{font-size:12px;color:#5c6e72;margin:10px 0 0}.ig{font-size:14px;margin:8px 0 0}.ig a{color:#0a5;font-weight:700;text-decoration:none}
 .est{background:#1f4f5c;color:#fff;border-radius:12px;padding:10px 14px;margin:0 0 12px;font-size:15px}.est .sm{color:#d5ecec}
 .vc,.mnh-card{position:relative}
 .combo{position:absolute;top:10px;right:12px;background:#eafaf1;color:#0c7a3e;font-size:12px;font-weight:700;border-radius:20px;padding:3px 10px;white-space:nowrap;z-index:1}
@@ -56,6 +56,14 @@ h2{font-size:23px;letter-spacing:-.01em}
 .mnh-card li{padding:8px 0;border-top:1px solid #e3e9eb;font-size:14px;color:#24343a}
 .mnh-card .combo{top:14px}
 #dpa-side{position:fixed;right:0;top:45%;transform:rotate(-90deg) translateY(-100%);transform-origin:right top;background:#0b5cad;color:#fff;border:0;padding:10px 16px;border-radius:8px 8px 0 0;font-weight:700;cursor:pointer;z-index:50;box-shadow:0 2px 6px #0003;flex:none;width:auto;font-size:14px}
+#rer-side{position:fixed;left:0;top:45%;transform:rotate(90deg) translateY(-100%);transform-origin:left top;background:#1f4f5c;color:#fff;border:0;padding:10px 16px;border-radius:0 0 8px 8px;font-weight:700;cursor:pointer;z-index:50;box-shadow:0 2px 6px #0003;flex:none;width:auto;font-size:14px}
+#rer-modal{display:none;position:fixed;inset:0;background:#0006;z-index:60}#rer-modal.open{display:block}
+#rer-modal .box{position:absolute;left:16px;top:12%;width:min(420px,92vw);background:#fff;border-radius:14px;padding:18px 16px 16px;box-shadow:0 16px 50px #0004;text-align:left}
+#rer-x{position:absolute;top:8px;right:8px;border:0;background:none;color:#333;font-size:22px;line-height:1;cursor:pointer;flex:none;width:auto;padding:4px 8px}
+.rer-pop h3{margin:0 28px 6px 0;font-size:20px;color:#12343d}.rer-pop .kicker{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1f4f5c;margin:0 0 8px}
+.rer-pop img{width:100%;height:auto;border-radius:8px;display:block;margin:0 0 10px}
+.rer-pop p{margin:0 0 10px;color:#445;font-size:14px}
+.rer-pop .step-btn{margin-top:4px;margin-right:8px}
 #dpa-modal{display:none;position:fixed;inset:0;background:#0006;z-index:60}#dpa-modal.open{display:block}
 #dpa-modal .box{position:absolute;right:16px;top:12%;width:min(420px,92vw);background:#fff;border-radius:14px;padding:18px 16px 16px;box-shadow:0 16px 50px #0004;text-align:left}
 #dpa-x{position:absolute;top:8px;right:8px;border:0;background:none;color:#333;font-size:22px;line-height:1;cursor:pointer;flex:none;width:auto;padding:4px 8px}
@@ -97,12 +105,11 @@ window.dpaTrack=function(ev,props){try{if(p==='ga4'&&window.gtag)gtag('event',ev
 </div></section>
 <section class=step><span class=step-n>3</span><div><b>Get approved by a mortgage lender</b>
 <p>A lender is who gets you approved for DPA.</p>
-<a class=step-btn href="sms:6122291130?&body=Hi%20Eric%20%E2%80%94%20%5BDPA%20Finder%20site%5D%20I%27d%20like%20to%20get%20approved%20for%20down%20payment%20help.">Text Eric</a>
-<div class=sm>or <a href="mailto:epredlinger@cbburnet.com,mjduevel@cbburnet.com?subject=%5BDPA%20Finder%20site%5D%20Getting%20approved%20for%20DPA&amp;body=Hi%20Eric%20and%20Mark%2C%0A%0A%5BDPA%20Finder%20site%5D%20I%27d%20like%20to%20get%20approved%20for%20down%20payment%20help.%0A">Email Eric &amp; Mark</a></div>
+<a class=step-btn href="sms:6124773614?&body=Hi%20Alex%20%E2%80%94%20%5BDPA%20Finder%20site%5D%20I%27d%20like%20to%20get%20approved%20for%20down%20payment%20help.">Text me</a>
+<p class=lo-line>Alex Carr · Associated Bank · NMLS #2235708</p>
+<p class=ig>Follow <a href="https://www.instagram.com/mortgage_quarterback_/" target=_blank rel=noopener>@mortgage_quarterback_</a></p>
 </div></section>
 </div>
-<a class=rer href="https://www.mytalk1071.com/podcasts/real-estate-radio/" target=_blank rel=noopener onclick="window.dpaTrack&&dpaTrack('home_rer')"><img src="rer-show.png" alt="Real Estate Radio on myTalk 107.1" loading=lazy><span class=rk>Partner · Real Estate Radio · myTalk 107.1</span><span class=rt>Built with hosts <b>Eric Redlinger</b> &amp; <b>Mark Duevel</b> (Coldwell Banker). Listen to the show &rarr;</span></a>
-<p class=lo-line>Mortgage questions: Alex Carr · Associated Bank · NMLS #2235708</p>
 <div class=foot style="text-align:center">Educational information only. Not a loan application, pre-approval, or commitment to lend. Short link: <a href="https://bit.ly/4iouMkJ">bit.ly/4iouMkJ</a></div>
 </div><div id=app hidden><div class=tabs><button id=tq class=on onclick="tab(0)">DPA Quiz</button><button id=tc onclick="tab(1)">Classes</button><button class=hm onclick="goHome()">&larr; Home</button></div><div class=tc><svg width="38" height="14" viewBox="0 0 38 14" aria-hidden="true"><path fill="#1f4f5c" d="M0 14V9h4V6h3v3h3V3h2V0h1v3h2v11h2V7h3v7h3V4l2-3 2 3v10h3V8h3v6z"/></svg>Minnesota · Twin Cities metro DPA finder</div><div id=quizTab><div class=bar><i id=pb></i></div><div id=s></div></div><div id=classTab hidden><h2>Homebuyer Education Classes</h2><div class=hint>Certified Home Stretch&copy; workshops from the Minnesota Homeownership Center (HOC). Checked 2026-10-27. Schedules change often, so always check the live HOC calendar before you register.</div><a class=lo href="https://www.hocmn.org/workshop-calendar/" target=_blank rel=noopener>Register on the Homeownership Center calendar</a><div class=sm style="text-align:center">Questions? Call HOC at <a href="tel:+16516599336">651-659-9336</a> &middot; <a href="https://www.hocmn.org/for-homebuyers/homebuyer-education/" target=_blank rel=noopener>About homebuyer education</a></div><div class=note><b>Before you sign up</b><ul style="padding-left:18px;margin:6px 0"><li><b>Home Stretch&copy;</b> (in-person or live virtual through HOC partner agencies) is the main certified class that many MN down payment programs and first mortgages accept.</li><li><b>First-Generation Homebuyers Community DPA Fund</b> accepts Home Stretch or Realizing the American Dream (instructor-led, in-person or live virtual). It does <b>not</b> accept Framework, Fannie Mae HomeView, or Freddie Mac CreditSmart.</li><li><b>Take the class before you sign a purchase agreement.</b> Many programs require this (NeighborWorks Home Partners rule effective Oct 5, 2026; the First-Gen Community Fund also requires it).</li><li>The cost is often about $40. Some sessions are paid for by a sponsor, and fee waivers may be available, so call the agency.</li><li>Self-guided online Framework exists, but confirm with your lender and your DPA program before you rely on it.</li></ul></div><div class=mo>October 2026</div><div class=c><b>Thu Oct 29</b> <span class=sm>9:00am–5:00pm</span><span class="tag ip">In-person</span><div class=inc>International Institute of Minnesota</div><div class=sm>1694 Como Ave, St. Paul</div><div class=sm>$40 &middot; English</div></div><div class=mo>November 2026</div><div class=c><b>Wed–Thu Nov 4–5</b> <span class=sm>5:00–9:30pm (both nights)</span><span class="tag">Live Virtual</span><div class=inc>KOOTASCA Community Action</div><div class=sm>$40 &middot; English</div></div><div class=c><b>Wed–Thu Nov 4–5</b> <span class=sm>5:00–9:30pm (both nights)</span><span class="tag">Live Virtual</span><div class=inc>Arrowhead Economic Opportunity Agency</div><div class=sm>$40 &middot; English</div></div><div class=c><b>Thu Nov 5 + Thu Nov 12</b> <span class=sm>5:00–9:00pm (both nights)</span><span class="tag ip">In-person</span><div class=inc>Dakota County CDA</div><div class=sm>1228 Town Centre Dr, Eagan</div><div class=sm>$20 Dakota Co. residents / $40 others &middot; English</div></div><div class=c><b>Sat Nov 7</b> <span class=sm>8:00am–4:30pm</span><span class="tag ip">In-person</span><div class=inc>Scott County CDA</div><div class=sm>100 5th Ave E, Shakopee</div><div class=sm>$40 &middot; English</div></div><div class=c><b>Sat Nov 7</b> <span class=sm>8:30am–5:00pm</span><span class="tag">Live Virtual</span><div class=inc>NeighborWorks Home Partners</div><div class=sm>Fee paid by sponsor &middot; English</div></div><div class=c><b>Sat Nov 7</b> <span class=sm>9:00am–5:00pm</span><span class="tag ip">In-person</span><div class=inc>Mni Sota Fund</div><div class=sm>1530 Franklin Ave E, Minneapolis</div><div class=sm>Fee paid by sponsor &middot; English</div></div><div class=c><b>Sat Nov 7</b> <span class=sm>9:00am–5:00pm</span><span class="tag ip">In-person</span><div class=inc>CAPI</div><div class=sm>5930 Brooklyn Blvd, Brooklyn Center</div><div class=sm>Fee paid by sponsor &middot; English</div></div><div class=c><b>Mon Nov 9</b> <span class=sm>8:30am–5:00pm</span><span class="tag ip">In-person</span><div class=inc>Washington County CDA</div><div class=sm>7645 Currell Blvd, Woodbury</div><div class=sm>Fee paid by sponsor &middot; English</div></div><div class=c><b>Sat Nov 14</b> <span class=sm>9:00am–5:00pm</span><span class="tag ip">In-person</span><div class=inc>Project for Pride in Living</div><div class=sm>1021 E Franklin Ave, Minneapolis</div><div class=sm>Fee paid by sponsor &middot; English</div></div><div class=c><b>Sat Nov 14</b> <span class=sm>9:00am–5:00pm</span><span class="tag ip">In-person</span><div class=inc>PRG, Inc.</div><div class=sm>2017 E 38th St, Minneapolis</div><div class=sm>Fee paid by sponsor &middot; English</div></div><div class=c><b>Sat Nov 14</b> <span class=sm>9:00am–5:00pm</span><span class="tag">Live Virtual</span><div class=inc>PRG, Inc.</div><div class=sm>Fee paid by sponsor &middot; English</div></div><div class=mo>Also in St. Paul</div><div class=c><b>Model Cities HomeStretch</b><div class=sm>Lists Saturday sessions Oct 24, Nov 14 and Dec 12, 2026.</div><a href="https://www.modelcities.org/series/homestretch-2026/" target=_blank rel=noopener>See Model Cities schedule</a></div><div class=src>Source: <a href="https://www.hocmn.org/workshop-calendar/" target=_blank rel=noopener>hocmn.org/workshop-calendar</a>, checked 2026-10-27. This list shows sessions through Nov 14. See HOC for later dates and other languages.</div><div class=foot><p>Educational information only. Not a loan application, pre-approval, or commitment to lend. Not affiliated with or endorsed by the Minnesota Homeownership Center or the listed agencies.</p></div></div></div></div>
 <div class=sitefoot>Independent educational tool for Minnesota homebuyers. Not a loan application and not affiliated with any bank, lender, or government agency.<br>Program details change often; confirm with the program before you rely on them.<br>Short link: <a href="https://bit.ly/4iouMkJ">bit.ly/4iouMkJ</a></div><script>function go(i){home.hidden=true;app.hidden=false;tab(i);scrollTo(0,0)}function goHome(){app.hidden=true;home.hidden=false;scrollTo(0,0)}</script><script>const PROGRAMS=[
@@ -1219,12 +1226,14 @@ show();</script><script>if('serviceWorker' in navigator)navigator.serviceWorker.
 </div>
 <script>
 function alertsFormReady(){var id=String(window.ALERTS_FORM_ID||'').trim();return !!id && !/^replace/i.test(id) && id!=='mvkkdapp';}
-function openDpaUpdate(){var m=document.getElementById('dpa-modal');m.classList.add('open');document.body.style.overflow='hidden';
+function openDpaUpdate(){closeSponsor();var m=document.getElementById('dpa-modal');m.classList.add('open');document.body.style.overflow='hidden';
  var ready=alertsFormReady();document.getElementById('dpa-up-form').hidden=!ready;document.getElementById('dpa-pending').hidden=ready;document.getElementById('dpa-msg').textContent='';
  if(ready){var el=document.querySelector('#dpa-up-form input[type=email]');if(el)setTimeout(function(){el.focus();},30);}
  window.dpaTrack&&dpaTrack('dpa_update_open');}
-function closeDpaUpdate(){document.getElementById('dpa-modal').classList.remove('open');document.body.style.overflow='';}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDpaUpdate();});
+function closeDpaUpdate(){document.getElementById('dpa-modal').classList.remove('open');if(!document.getElementById('rer-modal').classList.contains('open'))document.body.style.overflow='';}
+function openSponsor(){closeDpaUpdate();document.getElementById('rer-modal').classList.add('open');document.body.style.overflow='hidden';window.dpaTrack&&dpaTrack('rer_sponsor_open');}
+function closeSponsor(){document.getElementById('rer-modal').classList.remove('open');if(!document.getElementById('dpa-modal').classList.contains('open'))document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDpaUpdate();closeSponsor();}});
 document.getElementById('dpa-up-form').addEventListener('submit',async function(e){e.preventDefault();var m=document.getElementById('dpa-msg');var id=String(window.ALERTS_FORM_ID||'').trim();
  if(!alertsFormReady()){document.getElementById('dpa-up-form').hidden=true;document.getElementById('dpa-pending').hidden=false;m.textContent='';return;}
  try{var r=await fetch('https://formspree.io/f/'+encodeURIComponent(id),{method:'POST',body:new FormData(e.target),headers:{Accept:'application/json'}});
@@ -1232,4 +1241,17 @@ document.getElementById('dpa-up-form').addEventListener('submit',async function(
   else{m.style.color='#b22';m.textContent='Something went wrong. Please try again.';}}
  catch(err){m.style.color='#b22';m.textContent='Something went wrong. Please try again.';}});
 </script>
+<button type="button" id="rer-side" onclick="openSponsor()">Sponsor</button>
+<div id="rer-modal" onclick="if(event.target==this)closeSponsor()" role="dialog" aria-modal="true" aria-labelledby="rer-title">
+ <div class="box rer-pop">
+  <button type="button" id="rer-x" aria-label="Close" onclick="closeSponsor()">×</button>
+  <p class="kicker">Sponsor</p>
+  <h3 id="rer-title">Real Estate Radio</h3>
+  <img src="rer-show.png" alt="Real Estate Radio on myTalk 107.1">
+  <p>A sponsor of this page. Hosts Eric Redlinger and Mark Duevel on myTalk 107.1.</p>
+  <a class="step-btn" onclick="window.dpaTrack&&dpaTrack('cta_text')" href="sms:6122291130?&body=Hi%20Eric%20%E2%80%94%20%5BDPA%20Finder%20site%5D%20I%20heard%20Real%20Estate%20Radio%20and%20have%20a%20question.">Text Eric</a>
+  <a class="textlink" onclick="window.dpaTrack&&dpaTrack('cta_email')" href="mailto:epredlinger@cbburnet.com,mjduevel@cbburnet.com?subject=%5BDPA%20Finder%20site%5D%20Real%20Estate%20Radio&amp;body=Hi%20Eric%20and%20Mark%2C%0A%0A%5BDPA%20Finder%20site%5D%20I%20heard%20Real%20Estate%20Radio%20and%20have%20a%20question.%0A">Email Eric &amp; Mark</a>
+  <p class="sm" style="margin-top:12px"><a href="https://www.mytalk1071.com/podcasts/real-estate-radio/" target="_blank" rel="noopener">Listen to the show</a></p>
+ </div>
+</div>
 </body></html>
