@@ -31,7 +31,7 @@ const RULES={
 "Carver County CDA Standard DPA":{counties:["carver"],income:()=>131500,edu:true,ftOrFg:true},
 "Carver County CDA First-Generation Set-Aside DPA":{counties:["carver"],income:()=>131500,edu:true,fg:true},
 "Washington County CDA First-Generation Homebuyer Grant":{counties:["washington"],ami:115,fg:true},
-"Woodbury First-Time Homebuyer Assistance":{cities:["woodbury"],ft:true},
+"City of Woodbury First-Time Homeownership Program":{cities:["woodbury"],ft:true,edu:true,income:()=>158000,price:451500,verify:["Apply at least 35 days before closing"]},
 "Scott County CDA First-Time Homebuyer Grant":{counties:["scott"],ft:true,edu:true,verify:["CDA 1-on-1 counseling 60+ days before offer"]},
 "Dakota County CDA DPA (Northfield)":{cities:["northfield"]},
 "One Roof Essentia Hillside Incentive Program (HHIP)":{cities:["duluth"],edu:true,verify:["Central Hillside neighborhood map"]},
@@ -90,6 +90,7 @@ const INC={
  "Carver County CDA Standard DPA":{basis:"unclear",type:"program",lim:()=>131500,label:"100% AMI limit, any household size"},
  "Carver County CDA First-Generation Set-Aside DPA":{basis:"unclear",type:"program",lim:()=>131500,label:"100% AMI limit, any household size"},
  "One Roof Impact DPA":{basis:"unclear",type:"program",lim:()=>93500,label:"program limit"},
+ "City of Woodbury First-Time Homeownership Program":{basis:"household",type:"program",lim:()=>158000,label:"$158,000 household income limit"},
  "Associated Bank PATH Grant":{basis:"qualifying",type:"path",label:"PATH 80% AMI limit"},
  "First Homes (Rochester) community land trust":{basis:"household",type:"program",lim:()=>106800,label:"80% AMI limit (Olmsted/Dodge)"}
 };
@@ -111,4 +112,11 @@ function incomeCheck(p,b){const c=INC[p.name];
   return {over:true,text:`Your ${nm} is about ${f(Math.ceil((inc-L)/1000)*1000)} over this program's ${f(L)} limit${why}.`};}
  return {text:`${who} fits (${c.label}: ${f(L)})`+(c.basis=="mnh"?" — add a non-borrowing spouse's income if any":"")};}
 function incomeVerdict(p,b){return incomeCheck(p,{...b,county:(b.county||"").toLowerCase()}).text;}
-if(typeof module!=="undefined")Object.assign(module.exports,{incomeVerdict,incomeCheck,INC});
+function programIncomeLimit(p,b){
+ const c=INC[p.name]; if(!c) return null;
+ const bb={...b,county:(b.county||"").toLowerCase().replace(/ county$/,"")};
+ if(c.type==="path"){const L=PATHLIM[bb.county]; return L?L[1]:null;}
+ const L=c.type==="hud"?hudLimit(c.pct,bb):c.lim(bb);
+ return L||null;
+}
+if(typeof module!=="undefined")Object.assign(module.exports,{incomeVerdict,incomeCheck,INC,programIncomeLimit});

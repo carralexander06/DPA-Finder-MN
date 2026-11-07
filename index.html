@@ -44,6 +44,10 @@ h2{font-size:23px;letter-spacing:-.01em}
 .textlink{background:none;border:0;color:#0a5;padding:0;font-size:13px;font-weight:600;text-decoration:underline;cursor:pointer;flex:none;width:auto;border-radius:0}
 .lo-line{font-size:12px;color:#5c6e72;margin:10px 0 0}.ig{font-size:14px;margin:8px 0 0}.ig a{color:#0a5;font-weight:700;text-decoration:none}
 .est{background:#1f4f5c;color:#fff;border-radius:12px;padding:10px 14px;margin:0 0 12px;font-size:15px}.est .sm{color:#d5ecec}
+.hi-box{background:#f7fafb;border:1px solid #d5e3e8;border-radius:14px;padding:12px 14px;margin:0 0 12px}
+.hi-box h3{margin:0 0 4px;font-size:16px;color:#1f4f5c}
+.hi-badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.02em;color:#1f4f5c;background:#e3f1f3;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.hi-row{padding:8px 0;border-top:1px solid #e3eaec;font-size:14px}
 .vc,.mnh-card{position:relative}
 .combo{position:absolute;top:10px;right:12px;background:#eafaf1;color:#0c7a3e;font-size:12px;font-weight:700;border-radius:20px;padding:3px 10px;white-space:nowrap;z-index:1}
 .vc.has-combo{padding-top:36px}
@@ -258,7 +262,31 @@ function results(){MATCH=[];const hr=undefined,price=undefined;
    return `<li>${tag} <b>${name}</b> <span class=sm>${detail}</span></li>`;}).join('');
   const cb=fit?'<span class="combo">Can be combined</span>':'';
   return `<details class="mnh-card">${cb}<summary><span class="mnh-k">Minnesota Housing</span> <span class="mnh-sub">${fit} of ${mnhItems.length} programs may fit · tap to see types</span></summary><ul>${rows}</ul></details>`;}
- let i=0;let h=total?`<div class="est">Estimated help: <b>${$(total)}</b> <span class="sm">(estimate only)</span></div>`:'';
+ function higherBox(){
+  const userInc=Math.max(A.qual||0,A.hhinc||0);
+  if(userInc<110000) return '';
+  const rows=[]; const seen=new Set();
+  for(const p of PROGRAMS){
+    if(/land trust/i.test(p.name)||/land trust/i.test(p.assistance_type||'')) continue;
+    if(st(p.funding_status)[1]==='Closed') continue;
+    let best=null;
+    for(const a of ctxs){
+      const b={...base,county:a.county,city:a.city};
+      if(evaluate(p,b).fail.some(geo)) continue;
+      const L=programIncomeLimit(p,b);
+      if(!L||!(L>userInc)) continue;
+      if(!best||L>best.L) best={L,area:a.k};
+    }
+    if(!best||seen.has(p.name)) continue;
+    seen.add(p.name);
+    const amt=p.assistance_amount==='not stated'?'Amount varies':p.assistance_amount.split(' (')[0].split(';')[0];
+    rows.push(`<div class="hi-row"><b>${p.name}</b><div class="sm">Income limit ${$(best.L)} · ${amt} · ${p.geography}</div></div>`);
+  }
+  if(!rows.length) return '';
+  return `<div class="hi-box"><h3>Higher-income friendly programs <span class="hi-badge">Higher limit</span></h3><div class="sm">Your income is above the cap on many programs. These still list a limit above what you entered. City and county rules still apply.</div>${rows.join('')}</div>`;
+ }
+ let i=0;let h=higherBox();
+ h+=total?`<div class="est">Estimated help: <b>${$(total)}</b> <span class="sm">(estimate only)</span></div>`:'';
  h+=`<div class=sum><div class=sn>${g.length+y.length}</div><div>program${g.length+y.length==1?'':'s'} you may qualify for<br><span class=sm>${g.length} likely · ${y.length} maybe</span></div></div>`;
  const pth=items.find(isPath);if(pth)h+=card(pth,i++);h+=g.concat(y).filter(x=>!isPath(x)).map(x=>card(x,i++)).join('');
  h+=lmiBox();
