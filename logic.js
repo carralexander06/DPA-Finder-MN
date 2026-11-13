@@ -16,7 +16,7 @@ const RULES={
 "MN Housing First-Generation Homebuyer Loan":{closed:true},
 "First-Generation Homebuyers Community DPA Fund":{income:()=>118900,ft:true,fg:true,edu:true,minHR:20,verify:["$50k post-closing liquid assets","Start Up price limit","education before purchase agreement"]},
 "Hennepin County Homebuyer Assistance (DPA)":{counties:["hennepin"],exclCities:["bloomington","brooklyn park","eden prairie","maple grove","minneapolis","plymouth","richfield","st louis park","st. louis park"],ami:80,edu:true},
-"Hennepin County First-Generation Buyers DPA":{counties:["hennepin"],fg:true,closed:true},
+"Hennepin County First-Generation Buyers DPA":{counties:["hennepin"],fg:true},
 "Community Keys Plus Impact":{counties:["anoka","dakota","hennepin","ramsey","washington"]},
 "Metro Home DPA":{counties:["anoka","carver","chisago","dakota","hennepin","isanti","ramsey","scott","sherburne","washington","wright"]},
 "City of Shoreview First-Time Homeowners Due-on-Sale DPA":{cities:["shoreview"],ft:true},
